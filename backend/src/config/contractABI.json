@@ -1,0 +1,615 @@
+[
+  {
+    "name": "EvidenceRegistered",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "uint256",
+        "indexed": true
+      },
+      {
+        "name": "file_hash",
+        "type": "bytes32",
+        "indexed": false
+      },
+      {
+        "name": "ipfs_cid",
+        "type": "string",
+        "indexed": false
+      },
+      {
+        "name": "case_id",
+        "type": "string",
+        "indexed": false
+      },
+      {
+        "name": "creator",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256",
+        "indexed": false
+      }
+    ],
+    "anonymous": false,
+    "type": "event"
+  },
+  {
+    "name": "CustodyTransferred",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "uint256",
+        "indexed": true
+      },
+      {
+        "name": "from_address",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "to_address",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "reason",
+        "type": "string",
+        "indexed": false
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256",
+        "indexed": false
+      }
+    ],
+    "anonymous": false,
+    "type": "event"
+  },
+  {
+    "name": "StatusChanged",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "uint256",
+        "indexed": true
+      },
+      {
+        "name": "old_status",
+        "type": "uint256",
+        "indexed": false
+      },
+      {
+        "name": "new_status",
+        "type": "uint256",
+        "indexed": false
+      },
+      {
+        "name": "changed_by",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256",
+        "indexed": false
+      }
+    ],
+    "anonymous": false,
+    "type": "event"
+  },
+  {
+    "name": "EvidenceFileAdded",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "uint256",
+        "indexed": true
+      },
+      {
+        "name": "file_hash",
+        "type": "bytes32",
+        "indexed": false
+      },
+      {
+        "name": "ipfs_cid",
+        "type": "string",
+        "indexed": false
+      },
+      {
+        "name": "file_type",
+        "type": "string",
+        "indexed": false
+      },
+      {
+        "name": "added_by",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256",
+        "indexed": false
+      }
+    ],
+    "anonymous": false,
+    "type": "event"
+  },
+  {
+    "name": "RoleGranted",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "role",
+        "type": "uint256",
+        "indexed": false
+      },
+      {
+        "name": "granted_by",
+        "type": "address",
+        "indexed": true
+      }
+    ],
+    "anonymous": false,
+    "type": "event"
+  },
+  {
+    "name": "RoleRevoked",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "role",
+        "type": "uint256",
+        "indexed": false
+      },
+      {
+        "name": "revoked_by",
+        "type": "address",
+        "indexed": true
+      }
+    ],
+    "anonymous": false,
+    "type": "event"
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "constructor",
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "name": "grant_role",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "name": "role",
+        "type": "uint256"
+      }
+    ],
+    "outputs": []
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "name": "revoke_role",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "name": "role",
+        "type": "uint256"
+      }
+    ],
+    "outputs": []
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "name": "has_role",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "name": "role",
+        "type": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ]
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "name": "register_evidence",
+    "inputs": [
+      {
+        "name": "file_hash",
+        "type": "bytes32"
+      },
+      {
+        "name": "ipfs_cid",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "case_id",
+        "type": "string"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ]
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "name": "transfer_custody",
+    "inputs": [
+      {
+        "name": "evidence_id",
+        "type": "uint256"
+      },
+      {
+        "name": "new_custodian",
+        "type": "address"
+      },
+      {
+        "name": "reason",
+        "type": "string"
+      }
+    ],
+    "outputs": []
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "name": "get_custody_history",
+    "inputs": [
+      {
+        "name": "evidence_id",
+        "type": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple[]",
+        "components": [
+          {
+            "name": "from_address",
+            "type": "address"
+          },
+          {
+            "name": "to_address",
+            "type": "address"
+          },
+          {
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "name": "reason",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "name": "get_current_custodian",
+    "inputs": [
+      {
+        "name": "evidence_id",
+        "type": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ]
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "name": "set_status",
+    "inputs": [
+      {
+        "name": "evidence_id",
+        "type": "uint256"
+      },
+      {
+        "name": "new_status",
+        "type": "uint256"
+      }
+    ],
+    "outputs": []
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "name": "add_file_to_evidence",
+    "inputs": [
+      {
+        "name": "evidence_id",
+        "type": "uint256"
+      },
+      {
+        "name": "file_hash",
+        "type": "bytes32"
+      },
+      {
+        "name": "ipfs_cid",
+        "type": "string"
+      },
+      {
+        "name": "file_type",
+        "type": "string"
+      }
+    ],
+    "outputs": []
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "name": "get_evidence_files",
+    "inputs": [
+      {
+        "name": "evidence_id",
+        "type": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple[]",
+        "components": [
+          {
+            "name": "file_hash",
+            "type": "bytes32"
+          },
+          {
+            "name": "ipfs_cid",
+            "type": "string"
+          },
+          {
+            "name": "file_type",
+            "type": "string"
+          },
+          {
+            "name": "added_by",
+            "type": "address"
+          },
+          {
+            "name": "added_at",
+            "type": "uint256"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "name": "get_evidence",
+    "inputs": [
+      {
+        "name": "evidence_id",
+        "type": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "components": [
+          {
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "name": "file_hash",
+            "type": "bytes32"
+          },
+          {
+            "name": "ipfs_cid",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "case_id",
+            "type": "string"
+          },
+          {
+            "name": "creator",
+            "type": "address"
+          },
+          {
+            "name": "current_custodian",
+            "type": "address"
+          },
+          {
+            "name": "created_at",
+            "type": "uint256"
+          },
+          {
+            "name": "status",
+            "type": "uint256"
+          },
+          {
+            "name": "exists",
+            "type": "bool"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "name": "get_evidence_count",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "name": "verify_integrity",
+    "inputs": [
+      {
+        "name": "evidence_id",
+        "type": "uint256"
+      },
+      {
+        "name": "file_hash",
+        "type": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "name": "admin",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "name": "evidence_counter",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "name": "evidences",
+    "inputs": [
+      {
+        "name": "arg0",
+        "type": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "components": [
+          {
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "name": "file_hash",
+            "type": "bytes32"
+          },
+          {
+            "name": "ipfs_cid",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "case_id",
+            "type": "string"
+          },
+          {
+            "name": "creator",
+            "type": "address"
+          },
+          {
+            "name": "current_custodian",
+            "type": "address"
+          },
+          {
+            "name": "created_at",
+            "type": "uint256"
+          },
+          {
+            "name": "status",
+            "type": "uint256"
+          },
+          {
+            "name": "exists",
+            "type": "bool"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "name": "roles",
+    "inputs": [
+      {
+        "name": "arg0",
+        "type": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ]
+  }
+]
